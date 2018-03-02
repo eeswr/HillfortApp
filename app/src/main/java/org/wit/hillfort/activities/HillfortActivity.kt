@@ -45,6 +45,32 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     toolbarAdd.title = title
     setSupportActionBar(toolbarAdd)
 
+    textview_date = this.hillfortDescription
+    button_date = this.button_date_1
+
+    textview_date!!.text = "--/--/----"
+
+    val dateSetListener = object : DatePickerDialog.OnDateSetListener {
+      override fun onDateSet(view: DatePicker, year: Int, monthOfYear: Int,
+                             dayOfMonth: Int) {
+        cal.set(Calendar.YEAR, year)
+        cal.set(Calendar.MONTH, monthOfYear)
+        cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+        updateDateInView()
+      }
+    }
+
+    button_date!!.setOnClickListener(object : View.OnClickListener {
+      override fun onClick(view: View) {
+        DatePickerDialog(this@HillfortActivity,
+                dateSetListener,
+                cal.get(Calendar.YEAR),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DAY_OF_MONTH)).show()
+      }
+
+    })
+
 
     if (intent.hasExtra("hillfort_edit")) {
       edit = true
