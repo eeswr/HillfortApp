@@ -13,6 +13,7 @@ import org.wit.hillfort.models.HillfortModel
 
 interface HillfortListener {
   fun onhillfortClick(hillfort: HillfortModel)
+  fun onhillfortLongClick(hillfort: HillfortModel): Boolean
 }
 
 class hillfortAdapter constructor(private var hillforts: List<HillfortModel>,
@@ -33,9 +34,10 @@ class hillfortAdapter constructor(private var hillforts: List<HillfortModel>,
 
     fun bind(hillfort: HillfortModel,  listener : HillfortListener) {
       itemView.hillfortTitle1.text = hillfort.title
-      //itemView.hillfortDescription.text = hillfort.description
+      itemView.date.text = hillfort.description
       itemView.imageIcon.setImageBitmap(readImageFromPath(itemView.context, hillfort.image))
       itemView.setOnClickListener { listener.onhillfortClick(hillfort) }
+      itemView.setOnLongClickListener { listener.onhillfortLongClick(hillfort) }
     }
   }
 }

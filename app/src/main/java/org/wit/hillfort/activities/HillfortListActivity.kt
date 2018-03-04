@@ -4,12 +4,12 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.*
 import kotlinx.android.synthetic.main.activity_hillfort_list.*
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
-import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.startActivityForResult
+import org.jetbrains.anko.*
 import org.wit.hillfort.R
 import org.wit.hillfort.main.MainApp
 import org.wit.hillfort.models.HillfortModel
@@ -61,5 +61,21 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
 
   override fun onhillfortClick(hillfort: HillfortModel) {
     startActivityForResult(intentFor<HillfortActivity>().putExtra("hillfort_edit", hillfort), 201)
+  }
+
+  override fun onhillfortLongClick(hillfort: HillfortModel): Boolean {
+    Log.i("ListActivity", "Long Pressed on hilfort " + hillfort.toString())
+
+    alert("Delete hillfort?") {
+      title = "Delete"
+      yesButton {
+        app.hillforts.delete(hillfort)
+        loadhillforts()
+        toast("hillfort deleted")
+      }
+      noButton { }
+    }.show()
+
+    return true
   }
 }

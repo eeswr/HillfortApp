@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -86,8 +87,8 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     }
 
     btnAdd.setOnClickListener() {
-      hillfortTitle.setText(hillfort.title)
-      hillfortDescription.setText(hillfort.description)
+      hillfort.title = hillfortTitle.getText().toString()
+      hillfort.description = hillfortDescription.getText().toString()
 
       if (edit) {
         app.hillforts.update(hillfort.copy())
