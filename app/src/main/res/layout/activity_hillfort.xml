@@ -115,6 +115,14 @@
             android:textColor="@color/colorPrimary"
             android:textSize="16sp" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="(hold + drag marker to set hillfort location)"
+            android:textColor="@color/colorPrimary"
+            android:textSize="8sp" />
+
         <Button
             android:id="@+id/btnAdd"
             android:layout_width="200dp"
