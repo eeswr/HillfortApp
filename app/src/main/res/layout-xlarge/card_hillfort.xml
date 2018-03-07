@@ -14,8 +14,8 @@
 
     <ImageView
         android:id="@+id/imageIcon"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="16dp"/>
@@ -28,7 +28,7 @@
         android:layout_toEndOf="@+id/textView2"
         android:paddingLeft="15dp"
         android:textColor="@color/colorAccent"
-        android:textSize="15sp" />
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/date"
@@ -39,7 +39,7 @@
         android:layout_below="@+id/textView2"
         android:paddingLeft="15dp"
         android:textColor="@color/colorAccent"
-        android:textSize="15sp" />
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/textView2"
@@ -50,7 +50,7 @@
         android:paddingBottom="10dp"
         android:text="Hillfort Name:"
         android:textColor="@color/colorPop"
-        android:textSize="15sp" />
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/textView3"
@@ -60,7 +60,7 @@
         android:layout_toEndOf="@+id/imageIcon"
         android:text="Date Of Visit:"
         android:textColor="@color/colorPop"
-        android:textSize="15sp" />
+        android:textSize="30sp" />
 
   </RelativeLayout>
 </android.support.v7.widget.CardView>
