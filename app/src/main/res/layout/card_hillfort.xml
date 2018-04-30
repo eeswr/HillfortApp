@@ -32,11 +32,10 @@
 
     <TextView
         android:id="@+id/date"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/hillfortTitle1"
-        android:layout_alignStart="@+id/hillfortTitle1"
         android:layout_below="@+id/textView2"
+        android:layout_toEndOf="@+id/textView2"
         android:paddingLeft="15dp"
         android:textColor="@color/colorAccent"
         android:textSize="15sp" />

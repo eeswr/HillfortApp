@@ -5,7 +5,8 @@
   <string name="button_addhillfort">Add hillfort</string>
   <string name="button_deletehillfort">Delete hillfort</string>
   <string name="menu_addhillfort">Add</string>
-  <string name="menu_cancelhillfort">Cancel</string>
+  <string name="menu_cancelHillfort">Cancel</string>
+  <string name="menu_saveHillfort">Save</string>
   <string name="save_hillfort"> Save hillfort </string>
   <string name="delete_hillfort"> Delete hillfort </string>
   <string name="enter_hillfort_title"> Please enter a hillfort Title </string>
