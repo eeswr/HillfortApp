@@ -6,11 +6,14 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.*
+import com.google.android.gms.maps.model.Marker
 import kotlinx.android.synthetic.main.activity_hillfort_list.*
+import kotlinx.android.synthetic.main.content_hillfort_maps.*
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
 import org.jetbrains.anko.*
 import org.wit.hillfort.R
+import org.wit.hillfort.helpers.readImageFromPath
 import org.wit.hillfort.main.MainApp
 import org.wit.hillfort.models.HillfortModel
 
@@ -55,6 +58,7 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
   override fun onOptionsItemSelected(item: MenuItem?): Boolean {
     when (item?.itemId) {
       R.id.item_add -> startActivityForResult<HillfortActivity>(200)
+      R.id.item_map -> startActivity<HillfortMapsActivity>()
     }
     return super.onOptionsItemSelected(item)
   }
@@ -78,4 +82,5 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
 
     return true
   }
+
 }

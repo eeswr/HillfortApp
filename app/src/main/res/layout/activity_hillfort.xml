@@ -131,7 +131,7 @@
             android:layout_margin="16dp"
             android:layout_marginEnd="124dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/roundedbutton"
             android:paddingBottom="8dp"
             android:paddingTop="8dp"
@@ -140,7 +140,7 @@
             android:textColor="@color/colorPrimary"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintHorizontal_bias="0.188"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/hillfortImage" />
 
@@ -157,6 +157,25 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/hillfortLocation"
             app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/btnHere"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/roundedbutton"
+            android:text="Use Current Location"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/mapView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.181"
+            app:layout_constraintStart_toEndOf="@+id/hillfortLocation"
+            app:layout_constraintTop_toBottomOf="@+id/hillfortImage"
+            app:layout_constraintVertical_bias="1.0" />
 
 
     </android.support.constraint.ConstraintLayout>

@@ -42,4 +42,12 @@ class HillfortStoreRoom(val context: Context) : HillfortStore {
       dao.delete(hillfort)
     }
   }
+
+  override suspend fun findById(id: Long): HillfortModel? {
+    val deferredPlacemark = bg {
+      dao.findById(id)
+    }
+    val placemark = deferredPlacemark.await()
+    return placemark
+  }
 }

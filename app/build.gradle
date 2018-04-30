@@ -38,6 +38,7 @@ dependencies {
   implementation 'org.jetbrains.anko:anko-commons:0.10.3'
 
   implementation 'com.google.android.gms:play-services-maps:11.6.2'
+  implementation "com.google.android.gms:play-services-location:11.6.2"
 
   compile 'android.arch.persistence.room:runtime:1.0.0'
   kapt 'android.arch.persistence.room:compiler:1.0.0'

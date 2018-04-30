@@ -22,6 +22,9 @@
     <activity android:name=".activities.HillfortListActivity">
     </activity>
 
+    <activity android:name=".activities.HillfortMapsActivity">
+    </activity>
+
 
     <activity
         android:name=".activities.SplashActivity"

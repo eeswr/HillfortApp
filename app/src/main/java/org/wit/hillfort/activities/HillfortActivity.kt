@@ -1,5 +1,6 @@
 package org.wit.hillfort.activities
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -11,6 +12,8 @@ import android.view.View
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.TextView
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
@@ -20,9 +23,7 @@ import kotlinx.android.synthetic.main.activity_maps.*
 import kotlinx.android.synthetic.main.card_hillfort.*
 import org.jetbrains.anko.*
 import org.wit.hillfort.R
-import org.wit.hillfort.helpers.readImage
-import org.wit.hillfort.helpers.readImageFromPath
-import org.wit.hillfort.helpers.showImagePicker
+import org.wit.hillfort.helpers.*
 import org.wit.hillfort.main.MainApp
 import org.wit.hillfort.models.HillfortModel
 import org.wit.hillfort.models.Location
@@ -39,6 +40,8 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
   val LOCATION_REQUEST = 2
   val defaultLocation = Location(52.245696, -7.139102, 15f)
 
+  private lateinit var locationService: FusedLocationProviderClient
+
   var button_date: Button? = null
   var textview_date: TextView? = null
   var cal = Calendar.getInstance()
@@ -51,10 +54,12 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     setContentView(R.layout.activity_hillfort)
     mapView.onCreate(savedInstanceState);
     app = application as MainApp
-
+    locationService = LocationServices.getFusedLocationProviderClient(this)
 
     toolbarAdd.title = title
     setSupportActionBar(toolbarAdd)
+
+    btnHere.isEnabled = false
 
     mapView.getMapAsync {
           map = it
@@ -110,15 +115,18 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       showImagePicker(this, IMAGE_REQUEST)
     }
 
-    hillfortLocation.setOnClickListener {
-      val location = Location(52.245696, -7.139102, 15f)
-      if (hillfort.zoom != 0f) {
-        location.lat =  hillfort.lat
-        location.lng = hillfort.lng
-        location.zoom = hillfort.zoom
+      hillfortLocation.setOnClickListener {
+          if (hillfort.zoom != 0f) {
+              defaultLocation.lat = hillfort.lat
+              defaultLocation.lng = hillfort.lng
+              defaultLocation.zoom = hillfort.zoom
+          }
+          startActivityForResult(intentFor<MapsActivity>().putExtra("location", defaultLocation), LOCATION_REQUEST)
       }
-      startActivityForResult(intentFor<MapsActivity>().putExtra("location", defaultLocation), LOCATION_REQUEST)
-    }
+
+      btnHere.setOnClickListener {
+          setCurrentLocation()
+      }
   }
 
   fun configureMap() {
@@ -180,6 +188,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       LOCATION_REQUEST -> {
         if (data != null) {
           val location = data.extras.getParcelable<Location>("location")
+          map.clear()
           hillfort.lat = location.lat
           hillfort.lng = location.lng
           hillfort.zoom = location.zoom
@@ -189,6 +198,30 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     }
   }
 
+    @SuppressLint("MissingPermission")
+    fun setCurrentLocation() {
+        locationService.lastLocation.addOnSuccessListener {
+            defaultLocation.lat = it.latitude
+            defaultLocation.lng = it.longitude
+            hillfort.lat = it.latitude
+            hillfort.lng = it.longitude
+            configureMap()
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (checkLocationPermissions(this)) {
+            btnHere.isEnabled = true
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        if (isPermissionGranted(requestCode, grantResults)) {
+            btnHere.isEnabled = true
+        }
+    }
 
   private fun updateDateInView() {
     val myFormat = "MM/dd/yyyy"
