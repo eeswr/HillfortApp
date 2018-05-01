@@ -13,6 +13,8 @@ import android.widget.Button
 import android.widget.DatePicker
 import android.widget.TextView
 import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -39,6 +41,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
   val IMAGE_REQUEST = 1
   val LOCATION_REQUEST = 2
   val defaultLocation = Location(52.245696, -7.139102, 15f)
+  val locationRequest = createDefaultLocationRequest()
 
   private lateinit var locationService: FusedLocationProviderClient
 
@@ -48,6 +51,21 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
   lateinit var map: GoogleMap
 
+    var locationCallback = object : LocationCallback() {
+        override fun onLocationResult(locationResult: LocationResult?) {
+            if (locationResult != null && locationResult.locations != null) {
+                val l = locationResult.locations.last()
+                info ("Location Update ${l.latitude} ${l.longitude}")
+                lat.setText(l.latitude.toString())
+                lng.setText(l.longitude.toString())
+            }
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun startLocationUpdates() {
+        locationService.requestLocationUpdates(locationRequest, locationCallback, null)
+    }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -247,6 +265,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     override fun onResume() {
         super.onResume()
         mapView.onResume()
+        startLocationUpdates()
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {

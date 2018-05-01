@@ -18,6 +18,6 @@ interface HillfortDao {
   @Delete
   fun delete(hillfort: HillfortModel)
 
-  @Query("select * from HillfortModel where id = :arg0")
+  @Query("select * from HillfortModel where id = :id")
   fun findById(id: Long): HillfortModel
 }

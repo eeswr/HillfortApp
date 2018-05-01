@@ -38,9 +38,70 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/latView"
+            android:layout_width="34dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="52dp"
+            android:gravity="center"
+            android:text="Lat:"
+            android:textColor="@color/colorPop"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/hillfortTitle"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/lat"
+            android:layout_width="87dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="52dp"
+            android:gravity="center"
+            android:text="00.00000"
+            android:textColor="@color/colorPrimary"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.333"
+            app:layout_constraintStart_toEndOf="@+id/latView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/lngView"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginStart="28dp"
+            android:gravity="center"
+            android:text="Lng:"
+            android:textColor="@color/colorPop"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/hillfortDescription"
+            app:layout_constraintStart_toEndOf="@+id/hillfortDescription" />
+
+        <TextView
+            android:id="@+id/lng"
+            android:layout_width="83dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="96dp"
+            android:gravity="center"
+            android:text="00.00000"
+            android:textSize="14sp"
+            android:textColor="@color/colorPrimary"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.428"
+            app:layout_constraintStart_toEndOf="@+id/lngView"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <android.support.design.widget.TextInputEditText
             android:id="@+id/hillfortTitle"
-            android:layout_width="match_parent"
+            android:layout_width="191dp"
             android:layout_height="35dp"
             android:layout_margin="8dp"
             android:hint="@string/hint_hillfortTitle"
@@ -53,16 +114,17 @@
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.046"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.162" />
+            app:layout_constraintVertical_bias="0.093" />
 
         <TextView
             android:id="@+id/hillfortDescription"
-            android:layout_width="match_parent"
+            android:layout_width="191dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:layout_marginTop="92dp"
+            android:layout_marginTop="4dp"
             android:hint="@string/hint_hillfortDate"
             android:inputType="text"
             android:maxLength="25"
@@ -72,6 +134,7 @@
             android:textColorHint="@color/colorPrimary"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.046"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/hillfortTitle" />
 
