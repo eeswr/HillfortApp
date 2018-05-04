@@ -16,4 +16,6 @@
   <string name="button_location">Set Location</string>
   <string name="title_activity_maps">Map</string>
   <string name="google_maps_key">AIzaSyDd8P5BXAoMgTc3K4wBZnbWCFdEsOzCx7s</string>
+  <string name="navigation_drawer_open">Open</string>
+  <string name="navigation_drawer_close">Close</string>
 </resources>

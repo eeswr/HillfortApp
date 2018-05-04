@@ -9,9 +9,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
-import android.widget.DatePicker
-import android.widget.TextView
+import android.widget.*
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationResult
@@ -49,6 +47,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
   var textview_date: TextView? = null
   var cal = Calendar.getInstance()
 
+
   lateinit var map: GoogleMap
 
     var locationCallback = object : LocationCallback() {
@@ -62,12 +61,8 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         }
     }
 
-    @SuppressLint("MissingPermission")
-    private fun startLocationUpdates() {
-        locationService.requestLocationUpdates(locationRequest, locationCallback, null)
-    }
 
-  override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_hillfort)
     mapView.onCreate(savedInstanceState);
@@ -83,6 +78,10 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
           map = it
           configureMap()
       }
+
+
+
+
 
     textview_date = this.hillfortDescription
     button_date = this.button_date_1
@@ -133,7 +132,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       showImagePicker(this, IMAGE_REQUEST)
     }
 
-      hillfortLocation.setOnClickListener {
+    hillfortLocation.setOnClickListener {
           if (hillfort.zoom != 0f) {
               defaultLocation.lat = hillfort.lat
               defaultLocation.lng = hillfort.lng
@@ -225,6 +224,11 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             hillfort.lng = it.longitude
             configureMap()
         }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun startLocationUpdates() {
+        locationService.requestLocationUpdates(locationRequest, locationCallback, null)
     }
 
     override fun onStart() {

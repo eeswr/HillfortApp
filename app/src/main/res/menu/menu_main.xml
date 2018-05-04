@@ -11,6 +11,6 @@
   <item
       android:id="@+id/item_map"
       android:icon="@android:drawable/ic_menu_mapmode"
-      android:title="@string/menu_addhillfort"
+      android:title="Map View"
       app:showAsAction="always"/>
 </menu>
